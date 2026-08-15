@@ -1,22 +1,45 @@
 # Prompt Package Manager
 
-Version prompts, variables, output schemas, tests, and changelogs.
+## Purpose
 
-## Quick start
+Validate a bounded prompt-package declaration and execute deterministic local substitution/schema test cases.
 
-```bash
-python -m pip install -e .
-prompt-package-manager examples/valid.json
-```
+## Non-goals
 
-The command emits deterministic fail-closed JSON and a SHA-256 evidence identifier. It uses synthetic input and has zero runtime dependencies.
+The package does not install, store, publish, fetch, or execute model prompts, plugins, arbitrary code, or remote tests.
 
-## Verify
+## Install
 
-```bash
-python -m unittest discover -s tests -v
-python scripts/check.py
-```
+Requires Python 3.11 or newer: `python -m pip install .`
 
-Apache-2.0. Python 3.11+.
+## API
 
+`evaluate(record)` validates lowercase name, strict SemVer, simple exact variables, prompt text, supported output schema, and 1-100 tests. Each test declares variables, exact expected rendered prompt, and sample output.
+
+## CLI
+
+Run `prompt-package-manager examples/valid.json`; the receipt explicitly sets `installed: false` and `stored: false`.
+
+## Example
+
+The synthetic `summarize` package substitutes `{text}` and checks a string output.
+
+## Security
+
+Attribute/index field traversal, format conversions/specifiers, undeclared placeholders, malformed braces, excessive expansion, invalid schema output, and oversized input fail closed.
+
+## Limits
+
+Prompts are capped at 16,384 characters, rendered prompts at 32,768, variables at 64, tests at 100, and input at 128 KiB. Schema support is intentionally small and deterministic.
+
+## Tests
+
+Run `python -m unittest discover -s tests -v` and `python scripts/check.py`.
+
+## AI assistance
+
+See `AI_ASSISTANCE.md`; package behavior and prompt safety require maintainer review.
+
+## License
+
+Apache-2.0; see `LICENSE`.
