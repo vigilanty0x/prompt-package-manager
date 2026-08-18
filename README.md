@@ -1,5 +1,8 @@
 # Prompt Package Manager
 
+> [!IMPORTANT]
+> Canonical development has been consolidated into [`vigilanty0x/promptops`](https://github.com/vigilanty0x/promptops), under [`packages/prompt-package-manager`](https://github.com/vigilanty0x/promptops/tree/main/packages/prompt-package-manager). This repository remains available to preserve its source history and compatibility reference. The imported `0.1.0` package keeps the `prompt-package-manager` distribution and CLI names. This notice does not claim a package-index transfer or publication.
+
 ## Purpose
 
 Validate a bounded prompt-package declaration and execute deterministic local substitution/schema test cases.
